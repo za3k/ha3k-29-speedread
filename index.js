@@ -31,7 +31,7 @@ function updateSpeed() {
 function scrollToTop() {
     LINE_HEIGHT = $(".book").height() / 39426;
     lastScrolled = time();
-    position = 0;
+    position = load() || 0;
     scrollTo(position);
 }
 
@@ -48,7 +48,14 @@ function scroll() {
 function scrollTo(line) {
     const y = line*LINE_HEIGHT;
     $(".book").css("top", `-${y}px`);
-    console.log(line);
+}
+
+function save() {
+    window.localStorage.setItem("speedread", position);
+}
+
+function load() {
+    return Number(window.localStorage.getItem("speedread"));
 }
 
 $(document).ready(() => {
@@ -56,4 +63,5 @@ $(document).ready(() => {
     scrollToTop();
     $("#speed-input").on("input", updateSpeed);
     setInterval(scroll, 10);
+    setInterval(save, 1000);
 });

@@ -49,8 +49,18 @@
     position: fixed;
     top: 0;
     left: 0;
-    left: calc( 50% - 20em );
     overflow-y: clip;
     z-index: 1;
     white-space: pre-line;
+}
+
+@media screen and (min-width: 800px) {
+    .book {
+        left: calc( 50% - 20em );
+    }
+}
+@media screen and (max-width: 800px) {
+    .book {
+        font-size: 10pt;
+    }
 }
